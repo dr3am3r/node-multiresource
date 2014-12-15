@@ -1,0 +1,18 @@
+{
+  "name": "node-multiresource",
+  "version": "0.0.2",
+  "description": "Simple tool to fetch multiple API endpoints in one go",
+  "author": "Sergii Tsegelnyk",
+  "devDependencies": {
+    "mocha": "*",
+    "should": ">= 0.0.1",
+    "express": "4.x.x",
+    "node-mocks-http": "*",
+    "express-mock-request": "*"
+  },
+  "dependencies": {
+  },
+  "scripts": {
+     "test": "node_modules/.bin/mocha"
+  }
+}
