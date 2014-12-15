@@ -1,4 +1,7 @@
-*** Simple module to get multiple resources from a REST expressjs server
+# Simple module to get multiple resources from a REST expressjs server
+
+### Status
+[![Build Status](https://travis-ci.org/dr3am3r/node-multiresource.png)](https://travis-ci.org/dr3am3r/node-multiresource)
 
 * Requirements: node.js 0.10.x and newer, Express 4.x.x
 * Only native Nodejs APIs are used for module itself + stuff for tests
