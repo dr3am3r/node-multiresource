@@ -1,15 +1,18 @@
 var multiresource = require('../lib/multiresource')
   , resource = require('../lib/resource')
-  , httpMocks = require('node-mocks-http');
+  , httpMocks = require('node-mocks-http')
+  , should = require('should');
 
 'use strict';
 
 describe('Resource', function () {
   it('should create new instance with options', function(done) {
+    var Resource = resource.create({});
+    Resource.should.be.instanceof(resource.Resource);
     done();
   });
 
-  it('should return new resource instance', function (done) {
+  it('should return new resource instance when calling create', function (done) {
    done();
   });
 
