@@ -8,7 +8,7 @@
     "should": ">= 0.0.1",
     "express": "4.x.x",
     "node-mocks-http": "*",
-    "express-mock-request": "git+ssh://git@github.com:dr3am3r/express-mock-request.git",
+    "express-mock-request": "*",
     "nock": "*"
   },
   "dependencies": {
