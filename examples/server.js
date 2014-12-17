@@ -5,7 +5,7 @@ var fs = require('fs')
   , app = express();
 
 // require multi resource library
-var multiResource = require('./lib/multiresource');
+var multiResource = require('..');
 
 // create parsing function for transforming the results, i.e. removing extra messages
 // that are not needed to be repeated in every part of response

@@ -17,11 +17,12 @@
  */
 'use strict';
 
-var resource = require('./resource');
+var resource = require('./lib/resource');
 
 module.exports = function( params ) {
 
-  var interceptUrl = params.url
+  var params = params || {}
+    , interceptUrl = params.url
     , parseFn = params.parse;
 
   return function(req, res, next) {
@@ -38,24 +39,28 @@ module.exports = function( params ) {
       , route
       , headers = req.headers;
 
-      
-      for (var i = 0, l=callbacksTotal; i<l; i++) {
-        route = req.protocol + '://' + req.headers.host + '/' + req.query[apiCalls[i]];
+    if (!callbacksTotal) {
+      next(new Error('API resources are not provided'));
+      return;
+    }
 
-        resource
-          .create({
-            protocol: req.protocol,
-            url: route,
-            headers: headers,
-            key: apiCalls[i]
-          })
-          .load( function(d) {
-            aggregatedResponse[d.key] = parseFn ? parseFn( d.value ) : d.value;
-            callbacksFired += 1;
-            if ( callbacksFired === callbacksTotal ) {
-              res.json(aggregatedResponse);
-            }
-        });
-      }
+    for (var i = 0, l=callbacksTotal; i<l; i++) {
+      route = req.protocol + '://' + req.headers.host + '/' + req.query[apiCalls[i]];
+
+      resource
+        .create({
+          protocol: req.protocol,
+          url: route,
+          headers: headers,
+          key: apiCalls[i]
+        })
+        .load( function(d) {
+          aggregatedResponse[d.key] = parseFn ? parseFn( d.value ) : d.value;
+          callbacksFired += 1;
+          if ( callbacksFired === callbacksTotal ) {
+            res.json(aggregatedResponse);
+          }
+      });
+    }
   };
 }
